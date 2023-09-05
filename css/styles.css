@@ -1,8 +1,7 @@
 /* Main styles */
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&Roboto:300');
 
-/* Variables */
-
+/* Variables for color, font sizes, and transitions */
 :root {
   --color-win: #78CF82;
   --color-lose: #D94545;
@@ -16,8 +15,7 @@
   --transition: all .2s ease-in-out;
 }
 
-/* main */
-
+/* Basic styles */
 * {
   box-sizing: border-box;
 }
@@ -42,6 +40,7 @@ h2 {
   margin: 0;
 }
 
+/* Button styles */
 button {
   margin: 6px;
   border: 1px solid transparent;
@@ -55,6 +54,7 @@ button {
   transition: var(--transition);
 }
 
+/* Main container */
 .main-container {
   display: flex;
   flex-direction: column;
@@ -64,19 +64,12 @@ button {
   text-align: center;
 }
 
-.section {
-  width: 100%;
-  padding: 10px;
-}
-
-/* Title */
-
+/* Title styles */
 .header {
   color: var(--color-start);
 }
 
-/* Phrase */
-
+/* Phrase styles */
 .letter {
   font-size: var(--font-size-medium);
   height: 65px;
@@ -97,8 +90,7 @@ button {
   background-color: #76CE82;
 }
 
-/* Keyboard */
-
+/* Keyboard styles */
 .keyrow {
   display: flex;
   justify-content: center;
@@ -119,8 +111,7 @@ button {
   font-size: var(--font-size-medium);
 }
 
-/* Overlay */
-
+/* Overlay styles for game start, win, and lose screens */
 #overlay {
   display: flex;
   flex-direction: column;

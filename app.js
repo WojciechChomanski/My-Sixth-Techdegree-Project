@@ -1,159 +1,116 @@
-const keyboard = document.getElementById('qwerty');
-const phrase = document.getElementById('phrase');
+// List of phrases for the game
+const phrases = [
+  "May the force be with you",
+  "Just keep swimming",
+  "A penny for your thoughts",
+  "The show must go on",
+  "Break a leg",
+  "Life is like a box of chocolates",
+  "Actions speak louder than words",
+  "Beauty is in the eye of the beholder"
+];
 
-let missed = 0;
-
+// Selecting DOM elements
 const overlay = document.getElementById('overlay');
 const startButton = document.querySelector('.btn__reset');
+const phraseContainer = document.querySelector('#phrase ul');
+const keyboard = document.querySelector('#qwerty');
+const hearts = document.querySelectorAll('.tries img');
 
+let missed = 0; // Counter for missed guesses
+
+// Hide the start overlay when the start button is clicked
 startButton.addEventListener('click', () => {
-    overlay.style.display = 'none';
+  overlay.style.display = 'none';
 });
 
-const phrases = [
-    "Practice makes perfect",
-    "Better late than never",
-    "Better safe than sorry",
-    "Great minds think alike",
-    "No pain no gain"
-  ];
+// Get a random phrase from the phrases array
+function getRandomPhrase() {
+  return phrases[Math.floor(Math.random() * phrases.length)];
+}
 
-  function getRandomPhraseAsArray(arr) {
-    
-    const randomIndex = Math.floor(Math.random() * arr.length);
-    
-    
-    const randomPhrase = arr[randomIndex];
-  
-    const charArray = randomPhrase.split('');
-  
-    return charArray;
+// Display the random phrase on the game board
+function addPhraseToDisplay(phrase) {
+  for (let i = 0; i < phrase.length; i++) {
+    const listItem = document.createElement('li');
+    listItem.textContent = phrase[i];
+    if (phrase[i] !== ' ') {
+      listItem.classList.add('letter');
+    } else {
+      listItem.classList.add('space');
+    }
+    phraseContainer.appendChild(listItem);
   }
-  
-  
-  const randomPhraseArray = getRandomPhraseAsArray(phrases);
-  console.log(randomPhraseArray);
-  
-   function addPhraseToDisplay(arr) {
-    const phraseList = document.querySelector('#phrase ul');
-    phraseList.innerHTML = '';
-  
-    for (let i = 0; i < arr.length; i++) {
-      const character = arr[i];
-      const li = document.createElement('li');
-      li.textContent = character;
-  
-      if (character !== ' ') {
-        li.classList.add('letter');
-      } else {
-        li.classList.add('space');
-      }
-  
-      phraseList.appendChild(li);
+}
+
+// Check if a letter is in the phrase
+function checkLetter(button) {
+  const letters = document.querySelectorAll('.letter');
+  let match = null;
+  for (let i = 0; i < letters.length; i++) {
+    if (letters[i].textContent.toLowerCase() === button.textContent) {
+      letters[i].classList.add('show');
+      match = button.textContent;
     }
   }
-  
-  
-  
-  const phraseArray = getRandomPhraseAsArray(phrases);
-  addPhraseToDisplay(phraseArray);
+  return match;
+}
 
-  
-  function checkLetter(button) {
-    const letterElements = document.querySelectorAll('.letter');
-    let match = null;
-  
-    for (let i = 0; i < letterElements.length; i++) {
-      const letterElement = letterElements[i];
-      const letter = letterElement.textContent.toLowerCase();
-  
-      if (letter === button.textContent.toLowerCase()) {
-        letterElement.classList.add('show');
-        match = letter;
-      }
-    }
-  
-    return match;
+// Check if the player has won
+function checkWin() {
+  const letters = document.querySelectorAll('.letter');
+  const shownLetters = document.querySelectorAll('.show');
+  if (letters.length === shownLetters.length) {
+    overlay.classList.add('win');
+    overlay.style.display = 'flex';
+    overlay.querySelector('.title').textContent = 'Congratulations! You won!';
+    startButton.textContent = 'Play Again';
+  } else if (missed >= 5) {
+    overlay.classList.add('lose');
+    overlay.style.display = 'flex';
+    overlay.querySelector('.title').textContent = 'Oops! You lost.';
+    startButton.textContent = 'Try Again';
   }
+}
 
-  
+// Event listener for the keyboard buttons
+keyboard.addEventListener('click', (e) => {
+  if (e.target.tagName === 'BUTTON') {
+    const button = e.target;
+    button.classList.add('chosen');
+    button.disabled = true;
 
-keyboard.addEventListener('click', (event) => {
-    if (event.target.tagName === 'BUTTON') {
-      const button = event.target;
-  
-      
-      button.classList.add('chosen');
-      button.disabled = true;
-  
-      const letterFound = checkLetter(button);
-  
-      
-      if (letterFound === null) {
-         missed++;
-  
-        
-        const tries = document.querySelectorAll('.tries')[missed - 1];
-  
-        
-        const heartImage = tries.querySelector('img');
-        heartImage.src = 'images/lostHeart.png';
-      }
-  
-      
-      checkWin();
+    const letterFound = checkLetter(button);
+    if (!letterFound) {
+      hearts[missed].setAttribute('src', 'images/lostHeart.png');
+      missed++;
     }
 
-    startButton.addEventListener('click', () => {
-        
-        resetGame();
-      
-        
-        overlay.style.display = 'none';
-      });
+    checkWin();
+  }
+});
+
+// Reset the game board for a new game
+function resetGameBoard() {
+  missed = 0;
+  phraseContainer.innerHTML = '';
+  const buttons = document.querySelectorAll('.keyrow button');
+  buttons.forEach((button) => {
+    button.classList.remove('chosen');
+    button.disabled = false;
   });
+  hearts.forEach((heart) => {
+    heart.setAttribute('src', 'images/liveHeart.png');
+  });
+}
 
-  function resetGame() {
-    
-    const phraseList = document.querySelector('#phrase ul');
-    phraseList.innerHTML = '';
-  
-    
-    const buttons = keyboard.querySelectorAll('button');
-    for (let i = 0; i < buttons.length; i++) {
-      const button = buttons[i];
-      button.classList.remove('chosen');
-      button.disabled = false;
-    }
-  
-    
-    missed = 0;
-    const tries = document.querySelectorAll('.tries');
-    for (let i = 0; i < tries.length; i++) {
-      const heartImage = tries[i].querySelector('img');
-      heartImage.src = 'images/liveHeart.png';
-    }
-  
-    
-    const newPhraseArray = getRandomPhraseAsArray(phrases);
-    addPhraseToDisplay(newPhraseArray);
+// Event listener for the start button to start a new game
+startButton.addEventListener('click', () => {
+  if (overlay.classList.contains('win') || overlay.classList.contains('lose')) {
+    overlay.classList.remove('win', 'lose');
   }
-  
-  
-   function checkWin() {
-    const letterElements = document.querySelectorAll('.letter');
-    const showElements = document.querySelectorAll('.show');
-  
-    
-    if (letterElements.length === showElements.length) {
-      
-      overlay.className = 'win';
-      overlay.style.display = 'flex';
-      overlay.querySelector('.title').textContent = 'Congratulations, you win!';
-    } else if (missed >= 5) {
-      
-      overlay.className = 'lose';
-      overlay.style.display = 'flex';
-      overlay.querySelector('.title').textContent = 'Sorry, you lose!';
-    }
-  }
+  resetGameBoard();
+
+  const randomPhrase = getRandomPhrase();
+  addPhraseToDisplay(randomPhrase);
+});

@@ -1,26 +1,27 @@
-/* Import Google Fonts */
+/* Main styles */
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&Roboto:300');
 
-/* Define CSS Variables for Reusability */
+/* Variables */
+
 :root {
-  --color-win: #26ac36;            /* Color for winning screen */
-  --color-lose: #bb2b2b;           /* Color for losing screen */
-  --color-start: #5090df;          /* Color for start screen */
-  --color-neutral: #5d6e91;         /* Neutral text color */
-  --color-neutral-light: #d1bfbf;  /* Lighter neutral text color */
-  --color-keys: #2f444e;           /* Color for keyboard buttons */
-  --color-keys-light: #b1abab;     /* Lighter color for keyboard buttons */
-  --font-size-large: 60px;         /* Large font size */
-  --font-size-medium: 20px;        /* Medium font size */
-  --transition: all .2s ease-in-out; /* Common transition timing */
+  --color-win: #78CF82;
+  --color-lose: #D94545;
+  --color-start: #5b85b7;
+  --color-neutral: #445069;
+  --color-neutral-light: #D2D2D2;
+  --color-keys: #37474F;
+  --color-keys-light: #E5E5E5;
+  --font-size-large: 60px;
+  --font-size-medium: 20px;
+  --transition: all .2s ease-in-out;
 }
 
-/* Reset Box Sizing for All Elements */
+/* main */
+
 * {
   box-sizing: border-box;
 }
 
-/* Basic Styles for the Body */
 body {
   justify-content: space-evenly;
   flex-direction: column;
@@ -28,13 +29,11 @@ body {
   height: 100vh;
 }
 
-/* Reset Padding and Display for Lists */
 li, ol, ul {
   padding: 0;
   display: inline-block;
 }
 
-/* Styles for Headings */
 h2 {
   margin: 0;
   text-transform: uppercase;
@@ -43,7 +42,6 @@ h2 {
   margin: 0;
 }
 
-/* Styles for Buttons */
 button {
   margin: 6px;
   border: 1px solid transparent;
@@ -57,7 +55,6 @@ button {
   transition: var(--transition);
 }
 
-/* Main Container Styles */
 .main-container {
   display: flex;
   flex-direction: column;
@@ -67,18 +64,19 @@ button {
   text-align: center;
 }
 
-/* Section Styles */
 .section {
   width: 100%;
   padding: 10px;
 }
 
-/* Title Styles */
+/* Title */
+
 .header {
   color: var(--color-start);
 }
 
-/* Phrase Styles */
+/* Phrase */
+
 .letter {
   font-size: var(--font-size-medium);
   height: 65px;
@@ -88,32 +86,24 @@ button {
   color: transparent;
   background: var(--color-neutral-light);
   border-radius: 5px;
-  transition: background-color 1s ease-in-out;
 }
 
-/* Show Effect for Letters */
-.letter.show {
-  background-color: lighten(color-win, 50%);
-}
-
-/* Space Styles */
 .space {
   width: 15px;
 }
 
-/* Highlighted Letter Styles */
 .show {
   color: #000;
   background-color: #76CE82;
 }
 
-/* Keyboard Styles */
+/* Keyboard */
+
 .keyrow {
   display: flex;
   justify-content: center;
 }
 
-/* Chosen Key Styles */
 .chosen {
   background: var(--color-neutral);
   border-radius: 5px;
@@ -121,7 +111,6 @@ button {
   color: #FFFFFF;
 }
 
-/* Reset Button Styles */
 .btn__reset {
   padding: 8px;
   margin: 50px auto;
@@ -130,7 +119,8 @@ button {
   font-size: var(--font-size-medium);
 }
 
-/* Overlay Styles */
+/* Overlay */
+
 #overlay {
   display: flex;
   flex-direction: column;
@@ -144,37 +134,30 @@ button {
   border-radius: 5px;
 }
 
-/* Title Styles within Overlay */
 .title {
   color: #FFF;
 }
 
-/* Start Screen Styles */
 .start {
   background-color: var(--color-start);
 }
 
-/* Start Screen Link Styles */
 .start a {
   color: var(--color-win);
 }
 
-/* Win Screen Styles */
 .win {
   background-color: var(--color-win);
 }
 
-/* Win Screen Link Styles */
 .win a {
   color: var(--color-win);
 }
 
-/* Lose Screen Styles */
 .lose {
   background-color: var(--color-lose);
 }
 
-/* Lose Screen Link Styles */
 .lose a {
   color: var(--color-lose);
 }

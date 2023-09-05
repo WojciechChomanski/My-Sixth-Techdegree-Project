@@ -7,45 +7,33 @@
     <link href="css/styles.css" rel="stylesheet">
   </head>
   <body>
-    <!-- Main Container: Contains the entire game interface -->
     <div class="main-container">
-      
-      <!-- Overlay Section: Initial start screen -->
       <div id="overlay" class="start">
         <h2 class="title">Wheel of Success</h2>
         <a class="btn__reset">Start Game</a>
       </div>
 
-      <!-- Banner Section: Display game title -->
       <div id="banner" class="section">
         <h2 class="header">Wheel of Success</h2>
       </div>
 
-      <!-- Phrase Section: Display the hidden phrase -->
       <div id="phrase" class="section">
         <ul></ul>
       </div>
-
-      <!-- Keyboard Section: On-screen keyboard for letter selection -->
       <div id="qwerty" class="section">
         <div class="keyrow">
-          <!-- Buttons for letters 'q' to 'p' -->
           <button>q</button><button>w</button><button>e</button><button>r</button><button>t</button><button>y</button><button>u</button><button>i</button><button>o</button><button>p</button>
         </div>
         <div class="keyrow">
-          <!-- Buttons for letters 'a' to 'l' -->
           <button>a</button><button>s</button><button>d</button><button>f</button><button>g</button><button>h</button><button>j</button><button>k</button><button>l</button>
         </div>
         <div class="keyrow">
-          <!-- Buttons for letters 'z' to 'm' -->
           <button>z</button><button>x</button><button>c</button><button>v</button><button>b</button><button>n</button><button>m</button>
         </div>
       </div>
 
-      <!-- Scoreboard Section: Display player's remaining lives -->
       <div id="scoreboard" class="section">
         <ol>
-          <!-- List items for player's lives (initially showing live hearts) -->
           <li class="tries"><img src="images/liveHeart.png" height="35px" width="30px"></li>
           <li class="tries"><img src="images/liveHeart.png" height="35px" width="30px"></li>
           <li class="tries"><img src="images/liveHeart.png" height="35px" width="30px"></li>
@@ -54,8 +42,6 @@
         </ol>
       </div>
     </div>
-    
-    <!-- JavaScript Script: Links the JavaScript file for game functionality -->
     <script type="text/javascript" src="app.js"></script>
   </body>
 </html>

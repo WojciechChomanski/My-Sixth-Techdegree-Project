@@ -7,7 +7,9 @@ const phrases = [
   "Break a leg",
   "Life is like a box of chocolates",
   "Actions speak louder than words",
-  "Beauty is in the eye of the beholder"
+  "Beauty is in the eye of the beholder",
+  "You have to realistic about these things",
+  "You can never have too many knives"
 ];
 
 // Selecting DOM elements
